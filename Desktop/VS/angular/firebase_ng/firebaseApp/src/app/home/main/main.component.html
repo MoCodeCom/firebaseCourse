@@ -1,0 +1,33 @@
+<div>
+    <p>data information</p>
+    <form (ngSubmit)="onSubmitForm(f)" #f="ngForm">
+        <label for="username">User Name</label><br>
+        <input 
+           name="username"
+           type="text"
+           ngModel
+           required
+           ><br>
+
+        <label for="password">Password</label><br>
+        <input 
+           name="password"
+           type="text"
+           ngModel
+           required
+           ><br>
+        <hr>
+        <button 
+           style="background-color: green; color: whitesmoke;"
+           type="submit"
+           [disabled]="f.invalid"
+           [ngStyle]="f.invalid?{'background':'gray'}:{'background': 'green'}"
+           > Adding user</button>
+        <button style="background-color: brown; color:whitesmoke">Cancel</button>
+    </form>
+    <button (click)="onGetData()">Get Data ...</button>
+    <button (click)="onGetAngularLessons()">Angular lessons</button>
+    <p *ngFor="let i of arr">{{ i['course']+ ' - ' + i['address']+ ' - ' + i['full_name']}}<p>
+    <p *ngFor="let i of lessonsArr">{{"lesson about angular with "+ i['lesson']}}</p>
+    
+</div>

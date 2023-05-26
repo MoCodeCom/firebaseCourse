@@ -6,7 +6,12 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "firebase":"firebase",
+    "local-dev":"firebase emulators:start --only firestore --import firebase_course_1",
+    "empty-emulator":"firebase emulators:start",
+    "emulator":"firebase emulators:start --import firebase_course_1",
+    "export":"firebase emulators: export firebase_course_1"
   },
   "private": true,
   "dependencies": {

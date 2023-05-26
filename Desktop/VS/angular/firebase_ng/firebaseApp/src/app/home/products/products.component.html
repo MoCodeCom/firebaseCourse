@@ -1,1 +1,32 @@
-<p>products works!</p>
+
+<div id="form">
+    <a routerLink="/inputForm">Add Data</a>
+
+    <div>
+        <ul>
+            <li *ngFor="let i of arr">
+                {{i.courseName +" -- "+ i.courseDescrption +" ---"+ i.courseDate}}
+                <div>
+                    <button 
+                       style="background-color: rgb(208, 89, 89); color:white;"
+                       (click)="onDelete(i)"
+                       >Delete</button>
+                    <button 
+                       style="background-color: green; color: white; margin-left: 5px;"
+                       (click)="onUpdate(i)"
+                       >Update</button>
+                </div>
+            </li>
+        </ul>
+
+        <div id="lists">
+            <ul >
+                <li *ngFor="let countList of coursesCount">
+                    <button 
+                       (click)="countOfList($event)"  
+                       >{{countList}}</button>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

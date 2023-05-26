@@ -1,0 +1,27 @@
+<div id="formContent">
+    <p>Information</p>
+    <form (ngSubmit)="onCreateCourse(f)" #f="ngForm">
+        <label for="courseName">Course Name</label><br>
+        <input name="courseName" 
+               type="text"
+               ngModel
+               required/><br><br>
+
+        <label for="courseDescrption">Course Description</label><br>
+        <input name="courseDescrption"
+               type="text"
+               ngModel
+               required/><br><br>
+
+        <label for="courseDate">Course Date</label><br>
+        <input name="courseDate"
+               type="date"
+               ngModel
+               required/><br><br>
+
+        <button type="submit"
+                [disabled]="f.invalid"
+                [ngStyle]="f.invalid?{'background-color':'gray'}:{'background-color':'green'}">Submit</button>
+        <button>Cancel</button>
+    </form>
+</div>

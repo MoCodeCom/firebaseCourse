@@ -13,17 +13,26 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http'
 
 import { AngularFireModule } from '@angular/fire/compat';
+//import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
-import { AngularFireStorageModule } from '@angular/fire/compat/storage';
+import { AngularFireStorageModule, USE_EMULATOR } from '@angular/fire/compat/storage';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { environment } from 'src/environments/environment';
+
+import { USE_EMULATOR as USE_AUTH_EMULATOR } from '@angular/fire/compat/auth';
+import { USE_EMULATOR as USE_FUNCTION_EMULATOR } from '@angular/fire/compat/database';
+import { InputFormComponent } from './home/form/input-form/input-form.component';
+import { UpdateComponent } from './home/update/update.component';
+//import {  USE_FIRESTORE_EMULATOR } from '@angular/fire/firestore';
 
 
 const appRoutes:Routes = [
   { path:'', component:HomeComponent , children:[
     {path:'auth', component:AuthComponent},
     {path:'products', component:ProductsComponent},
-    {path:'main', component:MainComponent}
+    {path:'main', component:MainComponent},
+    {path:'inputForm', component:InputFormComponent},
+    {path:'update', component:UpdateComponent}
   ]}
 ];
 
@@ -33,7 +42,9 @@ const appRoutes:Routes = [
     HomeComponent,
     AuthComponent,
     ProductsComponent,
-    MainComponent
+    MainComponent,
+    InputFormComponent,
+    UpdateComponent
   ],
   imports: [
     BrowserModule,
@@ -45,6 +56,10 @@ const appRoutes:Routes = [
     provideFirestore(()=>getFirestore()),
     provideFirebaseApp(()=> initializeApp(environment.firebase)),
 
+    //provideAuth
+    
+    //provideFirestore
+    //provideFunctions
     
 
 
@@ -52,7 +67,11 @@ const appRoutes:Routes = [
     RouterModule.forRoot(appRoutes),
     
   ],
-  providers: [],
+  providers: [
+    {provide:USE_AUTH_EMULATOR, useValue:environment.useEmulators?['localhost',9099]:undefined},
+    //{provide:USE_FIRESTORE_EMULATOR, useValue:environment.useEmulators?['localhost',8080]:undefined},
+    {provide:USE_FUNCTION_EMULATOR, useValue:environment.useEmulators?['localhost',5001]:undefined},
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
